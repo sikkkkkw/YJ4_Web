@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter_5</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Binggrae';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+        *{
+            margin: 0; padding: 0;
+        }
+        body{
+            font-family: sans-serif;
+        }
+        #back{
+            position: relative;
+            width: 960px;
+            margin: 0 auto;
+            background-color: rgb(214, 230, 245);
+        }
+        /* 띄우기 */
+        .main_article {
+            display: block;
+        }
+
+        .main_article:not(.initialShow) {
+            display: none;
+        }
+        header{
+        }
+        img{
+            width: 45px;
+            height: 45px;
+        }
+        #main_header{
+            width: 960px;
+            margin: 0 auto;
+            height: 160px;
+            position: relative;
+        }
+        #main_header > #title{
+            position: absolute;
+            left: 20px;
+            top: 30px;
+        }
+        #main_header > #main_gnb{
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        #main_header > #main_lnb{
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+        }
+        /* 메뉴1 */
+        #main_gnb > ul {
+            overflow: hidden;
+        }
+        #main_gnb > ul > li {
+            float: left;
+        }
+        #main_gnb > ul > li > a{
+            display: block;
+            padding: 2px 10px;
+            border: 1px solid black;
+        }
+        #main_gnb > ul >li >a:hover{
+            background: black;
+            color: white;
+        }
+        #main_gnb >ul >li:first-child > a {
+            border-radius: 10px 0 0 10px;
+
+        }
+        #main_gnb >ul >li:last-child > a {
+            border-radius: 0 10px 10px 0;
+        }
+        /* 메뉴2 */
+        #main_lnb > ul {
+            overflow: hidden;
+        }
+        #main_lnb > ul > li {
+            float: left;
+        }
+        #main_lnb > ul > li > a{
+            display: block;
+            padding: 12px 10px;
+            border: 1px solid black;
+        }
+        #main_lnb > ul >li >a:hover{
+            background: black;
+            color: white;
+        }
+        #main_lnb >ul >li:first-child > a {
+            border-radius: 10px 0 0 10px;
+
+        }
+        #main_lnb >ul >li:last-child > a {
+            border-radius: 0 10px 10px 0;
+        }
+        /* 콘텐츠 */
+        #content{
+            width: 960px;
+            margin: 0 auto;
+            /* 수평 레이아웃 구성 */
+            overflow: hidden;
+        }
+        #content > #main_section{
+            width: 750px;
+            float: left;
+            
+        }
+        #content > #main_aside{
+            width: 200px;
+            float: right;
+
+        }
+        /* 본문 */
+        #main_section > article.main_article{
+            margin-bottom: 10px;
+            padding: 20px;
+            border: 1px solid black;
+            background-color: rgb(181, 214, 146);
+        }
+        #main_section p{
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        }
+        /* 사이드 */
+        /* 첫 번째 탭 */
+        input:nth-of-type(1){
+            display: none;
+        }
+        input:nth-of-type(1) ~ div:nth-of-type(1){
+            display: none;
+        }
+        input:nth-of-type(1):checked ~ div:nth-of-type(1){
+            display: block;
+        }
+        /* 두 번째 탭 */
+        input:nth-of-type(2){
+            display: none;
+        }
+        input:nth-of-type(2) ~ div:nth-of-type(2){
+            display: none;
+        }
+        input:nth-of-type(2):checked ~ div:nth-of-type(2){
+            display: block;
+        }
+        /* 탭 모양 구성 */
+        section.buttons{
+            overflow: hidden;
+        }
+        section.buttons > label{
+            display: block;
+            float: left;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            /* 테두리 지정 */
+            box-sizing: border-box;
+            border: 1px solid black;
+
+            background: white;
+            color: black;
+        }
+        input:nth-of-type(1):checked ~ section.buttons > label:nth-of-type(1){
+            background: black;
+            color: white;
+        }
+        input:nth-of-type(2):checked ~ section.buttons > label:nth-of-type(2){
+            background: black;
+            color: white;
+        }
+        /* 목록 */
+        #font1{
+            font-size: 12px;
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        }
+        #font2{
+            font-size: 12px;
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        }
+        .item{
+            overflow: hidden;
+            padding: 10px;
+            border: 1px solid black;
+            border-top: none;
+            background-color: rgb(163, 204, 163);
+        }
+        .thumbnail{
+            float: left;
+        }
+        .description{
+            float: left;
+            margin-left: 10px;
+        }
+        strong{
+            font-size: 14px;
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        }
+        .description > p{
+            font-size: 12px;
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        }
+        .description > strong {
+            display: block;
+            width: 120px;
+            white-space: nowrap; /* 글자가 길어지면 자동으로 줄여줌 */
+            overflow: hidden; /* 글자가 넘칠 경우 숨김 */
+            text-overflow: ellipsis; /* 글 줄임표... 표시 */
+        }
+        /* 푸터 */
+        #main_footer{
+            width: 960px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            /* 테두리 */
+            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid black;
+            /* 글자 정렬 */
+            text-align: center;
+        }
+        #title{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            font-family: 'Binggrae';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+        }
+        img{
+            border: 0; /* 이미지 태그 초기화 */
+        }
+        footer{
+
+        }
+        h4{
+            position:relative;
+            left: 10px;
+            font-family: 'Binggrae';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
+        }
+    </style>
+</head>
+<body>
+        <header id="main_header">
+            <div id = "title">
+                <h1>Yu-Gi-Oh!</h1>
+                <h2>유희왕 덱 연구소</h2>        
+            </div>
+            <nav id = "main_lnb">
+                <ul>
+                    <li><a href="#" onclick="showContent('deployment')">전개</a></li>
+                    <li><a href="#" onclick="showContent('midrange')">미드레인지</a></li>
+                    <li><a href="#" onclick="showContent('operate')">운영</a></li>
+                    <li><a href="#" onclick="showContent('trap')">함떡</a></li>
+                    <li><a href="#" onclick="showContent('metabit')">메타비트</a></li> 
+                </ul>
+            </nav>
+        </header>
+    <div id ="back">
+        <div id="content">
+            <section id="main_section">
+                <!-- 전개 -->
+                <article class="main_article deployment initialShow">
+                    <h1>드래곤링크</h1>
+                    <h4>장점</h4>
+                    <p>
+                        유희왕 OCG에서 드래곤족이 갖는 범용 카드에서의 메리트는 상당하며, 드래곤 링크는 이러한 범용 드래곤족 서포트를 총동원할 수 있다. 기본은 바렛과 카오스 드래곤이 주축이지만 작정하고 초동 수를 늘릴 경우 드래그니티/붉은 눈/드래곤메이드/로즈 드래곤 등 수많은 드래곤족 테마와 혼합이 가능하고, 금제 전에는 이클립스 와이반과 남정룡, 간드라X 등 끝없는 변형이 가능한 굿 스터프 덱이다. 대 광암 묘지 견제 패 트랩 기능 겸 드래곤족 서포트 효과를 가진 비스테드가 출시되자 곧 소규모 입상을 기록하기도 했으며, 앞으로 나올 드래곤족 관련 지원들에 있어서도 언제든지 활용을 고려해볼 수 있다.
+                    </p>
+                </article>
+                <article class="main_article deployment initialShow">
+                    <h1>식물링크</h1>
+                    <h4>장점</h4>
+                    <p>
+                        기존의 식물 링크가 고성능 링크 요원과 링크 몬스터를 우겨넣었더니 식물족이 많아져서 식물 링크라고 불린 느낌이라면, 식물GS는 '코스트로 릴리스'라는 강력한 견제 능력을 가진 대신 전개가 부실하고 킬각 능력이 떨어지는 육화와, 엑스트라 링크는 능하지만 에이스의 부재와 블루밍 이외의 마땅한 견제카드가 없어 집이 부실한 생아발론의 단점을 보완하기 위해 탄생했다.
+                    </p>
+                </article>
+                <article class="main_article deployment">
+                    <h1>BF</h1>
+                    <h4>장점</h4>
+                    <p>
+                        질풍의 게일은 나오자마자 상대 몬스터의 공격력을 반감시키고 독풍의 시문은 검은 선풍을 덱에서 깔아버리는 미친 서치력을 가지고 있어서 이 두 몬스터만 첫 패에 잡아도 초동은 먹고 들어간다. 그와중에 선풍 때문에 전개를 하면서 아드는 벌어들이는 미친 성능을 자랑한다. 특히 스킬인 '해피의 사냥터'와 연계할 경우 검은 선풍의 서치범위가 넓어지며 심하면 블랙 페더를 소환하자 본인을 또 서치할 수 있다. 
+                    </p>
+                </article>
+                <!-- 미드레인지 -->
+                <article class="main_article midrange initialShow">
+                    <h1>크샤트리라</h1>
+                    <h4>장점</h4>
+                    <p>
+                        크샤트리라는 메인 덱 몬스터들부터 다른 테마의 준 에이스급에 해당하는 매우 강력한 성능의 카드들로 구성되어 있다. 대표적으로 펜리르와 유니콘의 경우 각각 상대의 필드 / 엑스트라 덱을 견제하면서, 동시에 스스로 전개의 초동으로도 기능한다. 이외의 몬스터들은 저 둘보다 비교적 견제력은 떨어지지만, 각자 역할에 있어서는 충분히 고성능이다. 오우거와 라이즈하트는 덱 조작 및 제외로 상대의 전술을 꼬아버릴 수 있으며 스케어-크샤와 티아라-크샤는 크샤트리라 덱에서는 제한적인 용도로 사용되지만 나름 유용한 파츠들이고, 각자의 원본 테마 덱에서는 크샤트리라 덱에서의 비중 이상으로 활약하기도 한다.
+                    </p>
+                </article>
+                <article class="main_article midrange">
+                    <h1>상검</h1>
+                    <h4>장점</h4>
+                    <p>
+                        전개 난이도가 굉장히 쉽다. 상검 메인 몬스터 효과를 통해 토큰을 불러내고, 그 토큰과 싱크로 소환을 해서 상검대사-적소와 플뢰르 드 바로네스를 비롯한 레벨 8 or 레벨 10의 강력한 싱크로 몬스터를 내는 것이 기본인데, 싱크로 몬스터들을 필드에 내는 것이 기본적으로 어렵지 않다.
+                    </p>
+                </article>
+                <article class="main_article gameContent initialShow">
+                    <h1>제너레이드</h1>
+                    <h4>장점</h4>
+                    <p>
+                        제너레이드의 견제폭은 다른 강력한 카드군과 비교해도 특출난 편이다. 요즘 듀얼 환경에서 살아남으려면 꼭 필요한 프리체인류 효과와 몬/마/함 퍼미션(하르), 드로우 및 서치 견제(하르), 소환 무효(니드헥), 비파괴 제거(우트가르자, 레이바테인) 및 비지정 제거(레이바테인)를 전부 가지고 있다. 그리고 필드 마법인 스테이지 하나만으로 덱이 운영되는 간단한 기믹을 가졌다.
+                        필드 마법인 스테이지 3장과 메인 덱 몬스터 9~11장[3], 테라포밍 1장만 넣으면 나머지를 범용 카드로 채울 수 있다. 메인 덱 몬스터들이 강하고 핵심적인 효과들을 가지고 있기 때문에 전개력이나 돌파력을 늘려 능동적인 타입이나, 강한 함정 카드들을 다수 투입한 함떡 타입, 각양각색의 카드군과 섞어 쓰는 등 플레이어의 입맛에 따라 구축이 가능하다. 
+                    </p>
+                </article>
+                <!-- 운영 -->
+                <article class="main_article operate">
+                    <h1>섬도희</h1>
+                    <h4>장점</h4>
+                    <p>
+                    섬도희는 조건만 채우면 서치 가능한 욕망의 항아리가 되는 인게이지, 모든 섬도 마법 카드를 재활용해주는 멀티롤과 카가리 등 어드밴티지 확보에 크게 특화돼있다. 마법 중심의 덱이라 아드 소모가 많을 수밖에 없음에도 불구하고, 이 강력하면서도 지속적인 아드 확보 능력 덕에 패나 필드가 풍족한 경우가 대부분이고 섬도 마법 카드엔 공통적으로 기본적인 효과 외에도 묘지에 마법 카드가 3장 이상 있을 때 발동할 수 있는 추가 효과가 있다. 이 추가 효과는 추가 드로우를 포함해 탈취, 특수 소환, 파괴 내성 등 원래 효과 못지않게 강력한 경우가 많다. 
+                    </p>
+                </article>
+                <article class="main_article operate">
+                    <h1>섀도르</h1>
+                    <h4>장점</h4>
+                    <p>
+                        엑스트라 덱이나, 메인 덱이나 여유가 많지 않은 편이다. 더군다나 소환수와 섀도르 모두 융합 소재의 속성을 따져서, 패 트랩 역시 가려서 들어가는 편이다. 국민 패 트랩인 하루 우라라의 경우 애매한 속성으로 인해 자주 채용되지 않고, 엘섀도르 네피림과 소환수 메르카바의 융합 소재가 되는 빛 속성 패 트랩인 이펙트 뵐러와 PSY프레임기어 감마, 패를 보강할 수 있는 증식의 G 정도만 사용된다. 극단적인 경우에는 PSY프레임기어 감마 외에는 안 넣는 경우도 있다.
+                    </p>
+                </article>
+                </article>
+                <!-- 함떡 -->
+                <article class="main_article trap">
+                    <h1>라뷰린스</h1>
+                    <h4>장점</h4>
+                    <p>
+                        함정 카드는 느린 속도와 수동성을 대가로 여타 카드에 비해 평균 파워가 훨씬 높은 편이다. 일례로, 상대 턴에 사용 가능한 함정 서치 효과가 있다고 해도 일반적으로는 상태 턴에 서치 + 내 턴에 세트 + 그 다음 상대 턴에 발동 으로 한 턴을 공히 내줘야 한다는 단점이 있다. 하지만 라뷰린스는 스토피&샹드라&버틀러의 프리체인 즉시 세트라는 자유롭고 빠른 서치 효과와 쿠클락&버틀러의 세트 카트 즉발 효과로 함정의 속도를 한 템포 빠르게 가져갈 수 있으며, 덕분에 함정 기반 덱임에도 후공 포텐셜이 나쁘지 않다.
+                    </p>
+                </article>
+                <article class="main_article trap">
+                    <h1>충혹마</h1>
+                    <h4>장점</h4>
+                    <p>
+                        필드에 몬스터를 거의 내놓지 않는다는 점 덕분에 스킬 드레인, 센서 만별, 아마노이와토, 인스펙트 보더처럼 강력한 락을 거는 카드나 갑부 고블린, 생명 단축의 패, 욕망과 겸허의 항아리 등 디메리트가 있는 부스팅 카드들을 큰 부담 없이 사용할 수 있다. 때문에 선공을 잡고 드로우로 패를 불린 뒤 상대 필드에 락을 걸고 덱을 갈아대는 메타비트 식으로 굴리는 플레잉이 매우 강력하며, 후공을 받았더라도 루닉 속공 마법으로 방해 효과들을 제거한 뒤 지속 함정으로 상대의 필드와 후속을 끊어버리거나, 라의 익신룡-구체형, 초융합과 같은 후공용 카드들을 투입하고 돌파를 시도할 수 있어 후공이 그리 심하게 약한 것도 아니다.
+                    </p>
+                </article>
+                <!-- 메타비트 -->
+                <article class="main_article metabit initialShow">
+                    <h1>진룡</h1>
+                    <h4>장점</h4>
+                    <p>진룡 몬스터들은 상대가 효과를 발동할 시 진룡 카드를 서치하거나 발동할 수 있는데,<br>상대가 파괴수나 카운터 함정 등으로 막지 않는 이상, 무조건 어드밴티지 +1 한다.
+                        진룡 지속<br>마법들은 필드에서 묘지로 보내졌을 때 상대 마법 / 함정 1장을 파괴할 수 있고, 진룡 지속<br>함정들은 필드에서 묘지로 보내졌을 때 상대 몬스터 1장을 파괴할 수 있다. 
+                        또한 진룡 몬스터들은 진룡 지속 마법 / 함정들을 통해 어드밴스 소환만으로 전개를 할 수 있는데,<br>이 덕분에 하급 몬스터를 투입할 필요가 없어 생명 단축의 패를 투입할 수 있어서 다른 견제 카드들을 맞아도 그만큼 다시 채울 수 있다. <br>즉, 대부분의 진룡 카드들이 서치 및 드로우 능력을 갖기에 어드밴티지 수급력이 굉장히 뛰어나고
+                        이러한 강점들로 인해 돌파력도 우수한 편이다.
+                    </p>
+                </article>
+                <article class="main_article trap metabit">
+                    <h1>루닉</h1>
+                    <h4>장점</h4>
+                    <p>
+                        충혹마 1장으로 튀어나오는 세라의 충혹마는 일반 함정이 발동할 때마다 덱에서 충혹마 특수 소환, 소환된 충혹마의 효과 발동, 본인의 3번 효과로 덱에서 일반 함정을 세트할 수 있어서 세라 혼자 1턴에 최대 3장의 아드를 버는 것이 가능하다. 단순히 일반 함정의 발동이 조건이라 능동적으로 티오를 소환해 묘지의 일반 함정을 재활용하고, 트리온이나 푸티카를 소환해서 상대 카드를 견제하고, 아트라나 키노를 소환함으로서 세트한 카드들을 보조할 수도 있기에 다양한 방식으로 어마어마한 자원을 끌어올 수 있다.
+                    </p>
+            </section>
+            <aside id="main_aside">
+                <input id = "first" type="radio" name="tab" checked="checked"/>
+                <input id = "second" type="radio" name="tab" />
+                <section class="buttons">
+                    <label for="first" id="font1">요즘 뜨는 카드</label>
+                    <label for="second" id="font2">10월 금제</label>
+                </section>
+                <div class="tab_item">
+                    <ul>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EC%97%90%EC%8A%A4:%ED%94%BC%20%EB%A6%AC%ED%8B%80%EB%82%98%EC%9D%B4%ED%8A%B8?from=%EB%A6%AC%ED%8B%80%EB%82%98%EC%9D%B4%ED%8A%B8')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/리틀라이트.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>에스:피 리틀나이트</strong>
+                                    <p>에이지 오브 오버로드</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EC%82%AC%EB%A1%9C%EC%8A%A4%3D%EC%97%90%EB%A0%88%EC%8A%A4%20%EC%BF%A0%EB%A5%B4%EB%88%84%EA%B8%B0%EC%95%84%EC%8A%A4')">
+                                <div class="thumbnail" >
+                                    <img src ="./imgs/난나.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>사로스=난나</strong>
+                                    <p>V점프 동봉</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EB%A0%88%EB%B3%BC%EB%A3%A8%EC%85%98%20%EC%8B%B1%ED%81%AC%EB%A1%A0')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/레볼루션 싱크론.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>레볼루션 싱크론</strong>
+                                    <p>듀얼리스트 넥서스</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EC%96%B4%EC%8D%B0%ED%8A%B8%20%EC%8B%B1%ED%81%AC%EB%A1%A0')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/어썰트 싱크론.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>어썰트 싱크론</strong>
+                                    <p>시너지 팩1</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%98%B8%EB%A3%A8%EC%8A%A4(%EC%9C%A0%ED%9D%AC%EC%99%95)')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/호루스(임세티).PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>호루스의 영광－임세티</strong>
+                                    <p>에이지 오브 오버로드</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%95%98%EC%97%BC%EC%9D%98%20%EA%B5%AC%ED%9D%AC')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/화염의 구희.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>화염의 구희</strong>
+                                    <p>팬텀나이트메어</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab_item">
+                    <ul>
+                        <!-- 금지 -->
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%98%84%EC%84%B8%EC%99%80%20%EB%AA%85%EA%B3%84%EC%9D%98%20%EC%97%AD%EC%A0%84/%EC%84%9C%ED%8F%AC%ED%8A%B8%20%EC%B9%B4%EB%93%9C?from=%EA%B3%A0%EC%B2%A8%EB%B3%91%20%EC%BC%88%EB%B2%A1#%EA%B3%A0%EC%B2%A8%EB%B3%91%20%EC%BC%88%EB%B2%A1')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/켈벡.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>고첨병 켈벡</strong>
+                                    <p>제한 -> 금지</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%98%84%EC%84%B8%EC%99%80%20%EB%AA%85%EA%B3%84%EC%9D%98%20%EC%97%AD%EC%A0%84/%EC%84%9C%ED%8F%AC%ED%8A%B8%20%EC%B9%B4%EB%93%9C?from=%EA%B3%A0%EC%9C%84%EB%B3%91%20%EC%95%84%EA%B8%B0%EB%8F%84#%EA%B3%A0%EC%9C%84%EB%B3%91%20%EC%95%84%EA%B8%B0%EB%8F%84')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/아기도.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>고위병 아기도</strong>
+                                    <p>제한 -> 금지</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%98%BC%EB%8F%88%EB%A7%88%EB%A3%A1%20%EC%B9%B4%EC%98%A4%EC%8A%A4%20%EB%A3%B0%EB%9F%AC')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/카오스룰러.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>혼돈마룡 카오스 룰러</strong>
+                                    <p>무제한 -> 금지</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/No.86%20H-C%20%EB%A1%A0%EA%B3%A0%EB%AF%B8%EC%96%B8%ED%8A%B8')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/론고.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>No.86 H-C 론고미언트</strong>
+                                    <p>무제한 -> 금지</p>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- 제한  -->
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%8B%B0%EC%95%84%EB%9D%BC%EB%A9%98%EC%B8%A0%20%ED%81%AC%EC%83%A4%ED%8A%B8%EB%A6%AC%EB%9D%BC')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/티크샤.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>티아라멘츠 크샤트리라</strong>
+                                    <p>무제한 -> 제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EB%B8%94%EB%A1%9D%EB%93%9C%EB%9E%98%EA%B3%A4')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/블록드래곤.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>블록드래곤</strong>
+                                    <p>준제한 -> 제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- 준제한 -->
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EC%9E%AD%EB%82%98%EC%9D%B4%EC%B8%A0%20%EC%98%A4%EB%A5%B4%ED%8E%98%EA%B3%A8%20%EA%B8%B0%EB%A5%B4%EC%88%98')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/오르페골.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>잭나이츠 오르페골 기르수</strong>
+                                    <p>제한 -> 준제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%8C%A8%EC%99%95%EA%B6%8C%EB%A3%A1%20%EB%8B%A4%ED%81%AC%EB%B8%8C%EB%A3%B8')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/다크브룸.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>패왕권룡 다크브룸</strong>
+                                    <p>제한 -> 준제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EC%A7%84%EB%A3%A1(%EC%9C%A0%ED%9D%AC%EC%99%95)')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/드래고닉D.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>드래고닉D</strong>
+                                    <p>제한 -> 준제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%9B%84%EC%99%84%EB%8B%A4%EB%A6%AC%EC%A6%88')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/의문의 지도.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>후완다리즈와 의문의 지도</strong>
+                                    <p>제한 -> 준제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/R-ACE#R-ACE%20%EC%97%90%EC%96%B4%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%84%B0')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/레스큐.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>R-ACE 에어호이스터</strong>
+                                    <p>무제한 -> 준제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EA%B5%B0%EC%9B%85%ED%95%A0%EA%B1%B0(%EC%9C%A0%ED%9D%AC%EC%99%95)')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/군웅할거.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>군웅할거</strong>
+                                    <p>무제한 -> 준제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%93%A8%EC%96%B4%EB%A6%AC#%ED%93%A8%EC%96%B4%EB%A6%AC%20%EB%94%9C%EB%A6%AC%EC%85%94%EC%8A%A4%EB%A9%94%EB%AA%A8%EB%A6%AC')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/퓨어리.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>퓨어리 딜리셔스메모리</strong>
+                                    <p>무제한 -> 준제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- 제한 해제 -->
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EC%A2%85%EB%A7%90%EC%9D%98%20%EA%B8%B0%EC%82%AC')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/종말의 기사.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>종말의 기사</strong>
+                                    <p>준제한 -> 무제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%EC%B4%88%EC%A4%91%EB%AC%B4%EC%82%AC#%EC%B4%88%EC%A4%91%EB%AC%B4%EC%82%AC%20%EB%B0%94%EC%9D%B4-Q')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/초중무사 바이.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>초중무사 바이-Q</strong>
+                                    <p>준제한 -> 무제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%94%84%EB%9E%AD%ED%82%A4%EC%A6%88#%ED%94%84%EB%9E%AD%ED%82%A4%EC%A6%88%20%EB%AE%A4')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/프랭키즈 뮤.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>프랭키즈 뮤</strong>
+                                    <p>준제한 -> 무제한</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#" onclick="redirectToLink('https://namu.wiki/w/%ED%8A%B8%EB%A6%AD%EC%8A%A4%ED%84%B0(%EC%9C%A0%ED%9D%AC%EC%99%95)#%ED%8A%B8%EB%A6%AD%EC%8A%A4%ED%84%B0%20%EB%9D%BC%EC%9D%B4%ED%8A%B8%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80')">
+                                <div class="thumbnail">
+                                    <img src ="./imgs/라이트스테이지.PNG" />
+                                </div>
+                                <div class="description">
+                                    <strong>트릭스터 라이트스테이지</strong>
+                                    <p>준제한 -> 무제한</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <footer id="main_footer">
+        <h3>HTML5 + CSS3 Basic</h3>
+        <address>Website Layout Basic</address>
+    </footer>
+    <script src="po.js"></script>
+</body>
+</html>
