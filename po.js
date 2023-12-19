@@ -1,4 +1,14 @@
-function showContent(category) {
+document.addEventListener("DOMContentLoaded", function () {
+    var titleDiv = document.getElementById("title");
+
+    titleDiv.addEventListener("click", function () {
+        console.log("Title clicked. Reloading the page.");
+        // 페이지 새로고침을 수행하는 코드
+        // location.reload();
+    });
+});
+
+function showContent(category, event) {
     var articles = document.getElementsByClassName('main_article');
     for (var i = 0; i < articles.length; i++) {
         articles[i].style.display = 'none';
@@ -7,8 +17,6 @@ function showContent(category) {
     for (var i = 0; i < content.length; i++) {
         content[i].style.display = 'block';
     }
-}
-function redirectToLink(link) {
-// JavaScript에서 페이지 이동하는 방법
-    window.location.href = link;
+    // 기본 동작 막기
+    event.preventDefault();
 }

@@ -28,7 +28,7 @@
         }
         #back{
             position: relative;
-            width: 960px;
+            width: 1340px;
             margin: 0 auto;
             background-color: rgb(214, 230, 245);
         }
@@ -43,15 +43,19 @@
         header{
         }
         img{
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
+
         }
         #main_header{
-            width: 960px;
+            width: 1340px;
             margin: 0 auto;
             height: 160px;
             position: relative;
+            z-index: 2;
+            background-color: rgb(214, 230, 245);
         }
+    
         #main_header > #title{
             position: absolute;
             left: 20px;
@@ -115,18 +119,18 @@
         }
         /* 콘텐츠 */
         #content{
-            width: 960px;
+            width: 1340px;
             margin: 0 auto;
             /* 수평 레이아웃 구성 */
             overflow: hidden;
         }
         #content > #main_section{
-            width: 750px;
+            width: 990px;
             float: left;
             
         }
         #content > #main_aside{
-            width: 200px;
+            width: 340px;
             float: right;
 
         }
@@ -169,14 +173,13 @@
         section.buttons > label{
             display: block;
             float: left;
-            width: 100px;
+            width: 170px;
             height: 30px;
             line-height: 30px;
             text-align: center;
             /* 테두리 지정 */
             box-sizing: border-box;
             border: 1px solid black;
-
             background: white;
             color: black;
         }
@@ -208,31 +211,36 @@
         }
         .thumbnail{
             float: left;
+            transition: transform 0.2s ease-in-out;
         }
+        .thumbnail:hover {
+        transform: scale(1.1);
+    }
         .description{
             float: left;
             margin-left: 10px;
         }
-        strong{
-            font-size: 14px;
-            font-family: 'LINESeedKR-Bd';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-        }
-        .description > p{
-            font-size: 12px;
-            font-family: 'LINESeedKR-Bd';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-        }
         .description > strong {
             display: block;
-            width: 120px;
+            width: 200px;
             white-space: nowrap; /* 글자가 길어지면 자동으로 줄여줌 */
             overflow: hidden; /* 글자가 넘칠 경우 숨김 */
             text-overflow: ellipsis; /* 글 줄임표... 표시 */
         }
+        strong{
+            font-size: 17px;
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        }
+        .description > p{
+            font-size: 13px;
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        }
+        
         /* 푸터 */
         #main_footer{
-            width: 960px;
+            width: 1340px;
             margin: 0 auto;
             margin-bottom: 10px;
             /* 테두리 */
@@ -265,9 +273,27 @@
             font-family: 'Binggrae';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff');
         }
+        .container{
+            width: 1080px;
+            height: 2000px;
+            z-index: 1;
+            transition: opacity 0.5s;
+
+        }
+        .video-img{
+            position: fixed;
+            top: 120px;
+            left: 50%;
+            width: 1080px;
+            height: 600px;
+            transform: translate(-50%, 0%);
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <img class="video-img" src="./vdieo/frame_0.jpg">
+    </div>
         <header id="main_header">
             <div id = "title">
                 <h1>Yu-Gi-Oh!</h1>
@@ -275,11 +301,11 @@
             </div>
             <nav id = "main_lnb">
                 <ul>
-                    <li><a href="#" onclick="showContent('deployment')">전개</a></li>
-                    <li><a href="#" onclick="showContent('midrange')">미드레인지</a></li>
-                    <li><a href="#" onclick="showContent('operate')">운영</a></li>
-                    <li><a href="#" onclick="showContent('trap')">함떡</a></li>
-                    <li><a href="#" onclick="showContent('metabit')">메타비트</a></li> 
+                    <li><a href="#" onclick="showContent('deployment', event); return false;">전개</a></li>
+                    <li><a href="#" onclick="showContent('midrange',event); return false;">미드레인지</a></li>
+                    <li><a href="#" onclick="showContent('operate',event); return false;">운영</a></li>
+                    <li><a href="#" onclick="showContent('trap',event); return false;">함떡</a></li>
+                    <li><a href="#" onclick="showContent('metabit',event); return false;">메타비트</a></li> 
                 </ul>
             </nav>
         </header>
@@ -289,21 +315,28 @@
                 <!-- 전개 -->
                 <article class="main_article deployment initialShow">
                     <h1>드래곤링크</h1>
-                    <h4>장점</h4>
+                    <h4>파워 : 	&#10029;&#10029;&#10029;&#10027;&#10027; 난이도 : &#10029;&#10029;&#10029;&#10027;&#10027; 견제력 : &#10029;&#10029;&#10029;&#10029;&#10027;</h4>
                     <p>
-                        유희왕 OCG에서 드래곤족이 갖는 범용 카드에서의 메리트는 상당하며, 드래곤 링크는 이러한 범용 드래곤족 서포트를 총동원할 수 있다. 기본은 바렛과 카오스 드래곤이 주축이지만 작정하고 초동 수를 늘릴 경우 드래그니티/붉은 눈/드래곤메이드/로즈 드래곤 등 수많은 드래곤족 테마와 혼합이 가능하고, 금제 전에는 이클립스 와이반과 남정룡, 간드라X 등 끝없는 변형이 가능한 굿 스터프 덱이다. 대 광암 묘지 견제 패 트랩 기능 겸 드래곤족 서포트 효과를 가진 비스테드가 출시되자 곧 소규모 입상을 기록하기도 했으며, 앞으로 나올 드래곤족 관련 지원들에 있어서도 언제든지 활용을 고려해볼 수 있다.
+                        유희왕 OCG에서 드래곤족이 갖는 범용 카드에서의 메리트는 상당하며, 드래곤 링크는 이러한 범용 드래곤족 서포트를 총동원할 수 있다. 기본은 바렛과 카오스 드래곤이 주축이지만 작정하고 초동 수를 늘릴 경우 드래그니티/붉은 눈/드래곤메이드/로즈 드래곤 등 수많은 드래곤족 테마와 혼합이 가능하다.
+                    </p>
+                </article>
+                <article class="main_article deployment initialShow">
+                    <h1>참기</h1>
+                    <h4>파워 : &#10029;&#10029;&#10029;&#10029;&#10027; 난이도 : &#10029;&#10029;&#10027;&#10027;&#10027; 견제력 : &#10029;&#10029;&#10029;&#10029;&#10027;</h4>
+                    <p>
+                        모든 카드의 효과가 단순하면서도 직관적이기 때문에 초보자에게 권할 만한 카드군으로 평가받는다. 카드군 자체만 보면 다소 불안정해 보일 수 있으나, 관련된 서포트 카드들이 굉장히 많아 발생하는 변수를 대비할 수 있고, 여러가지 내성을 부여해주는 카드들로 안정성을 올릴 수 있어 난이도에 비해 성능이 굉장히 뛰어난 덱
                     </p>
                 </article>
                 <article class="main_article deployment initialShow">
                     <h1>식물링크</h1>
-                    <h4>장점</h4>
+                    <h4>파워 : &#10029;&#10029;&#10027;&#10027;&#10027; 난이도 : &#10029;&#10029;&#10029;&#10027;&#10027; 견제력 : &#10029;&#10029;&#10029;&#10027;&#10027;</h4>
                     <p>
                         기존의 식물 링크가 고성능 링크 요원과 링크 몬스터를 우겨넣었더니 식물족이 많아져서 식물 링크라고 불린 느낌이라면, 식물GS는 '코스트로 릴리스'라는 강력한 견제 능력을 가진 대신 전개가 부실하고 킬각 능력이 떨어지는 육화와, 엑스트라 링크는 능하지만 에이스의 부재와 블루밍 이외의 마땅한 견제카드가 없어 집이 부실한 생아발론의 단점을 보완하기 위해 탄생했다.
                     </p>
                 </article>
                 <article class="main_article deployment">
                     <h1>BF</h1>
-                    <h4>장점</h4>
+                    <h4>파워 : &#10029;&#10029;&#10027;&#10027;&#10027; 난이도 : &#10029;&#10029;&#10029;&#10027;&#10027; 견제력 : &#10029;&#10029;&#10029;&#10027;&#10027;</h4>
                     <p>
                         질풍의 게일은 나오자마자 상대 몬스터의 공격력을 반감시키고 독풍의 시문은 검은 선풍을 덱에서 깔아버리는 미친 서치력을 가지고 있어서 이 두 몬스터만 첫 패에 잡아도 초동은 먹고 들어간다. 그와중에 선풍 때문에 전개를 하면서 아드는 벌어들이는 미친 성능을 자랑한다. 특히 스킬인 '해피의 사냥터'와 연계할 경우 검은 선풍의 서치범위가 넓어지며 심하면 블랙 페더를 소환하자 본인을 또 서치할 수 있다. 
                     </p>
@@ -311,21 +344,21 @@
                 <!-- 미드레인지 -->
                 <article class="main_article midrange initialShow">
                     <h1>크샤트리라</h1>
-                    <h4>장점</h4>
+                    <h4>파워 : &#10029;&#10029;&#10029;&#10027;&#10027; 난이도 : &#10029;&#10027;&#10027;&#10027;&#10027; 견제력 : &#10029;&#10029;&#10029;&#10027;&#10027;</h4>
                     <p>
                         크샤트리라는 메인 덱 몬스터들부터 다른 테마의 준 에이스급에 해당하는 매우 강력한 성능의 카드들로 구성되어 있다. 대표적으로 펜리르와 유니콘의 경우 각각 상대의 필드 / 엑스트라 덱을 견제하면서, 동시에 스스로 전개의 초동으로도 기능한다. 이외의 몬스터들은 저 둘보다 비교적 견제력은 떨어지지만, 각자 역할에 있어서는 충분히 고성능이다. 오우거와 라이즈하트는 덱 조작 및 제외로 상대의 전술을 꼬아버릴 수 있으며 스케어-크샤와 티아라-크샤는 크샤트리라 덱에서는 제한적인 용도로 사용되지만 나름 유용한 파츠들이고, 각자의 원본 테마 덱에서는 크샤트리라 덱에서의 비중 이상으로 활약하기도 한다.
                     </p>
                 </article>
                 <article class="main_article midrange">
                     <h1>상검</h1>
-                    <h4>장점</h4>
+                    <h4>파워 : &#10029;&#10029;&#10029;&#10029;&#10027; 난이도 : &#10029;&#10029;&#10027;&#10027;&#10027; 견제력 : &#10029;&#10029;&#10029;&#10029;&#10027;</h4>
                     <p>
                         전개 난이도가 굉장히 쉽다. 상검 메인 몬스터 효과를 통해 토큰을 불러내고, 그 토큰과 싱크로 소환을 해서 상검대사-적소와 플뢰르 드 바로네스를 비롯한 레벨 8 or 레벨 10의 강력한 싱크로 몬스터를 내는 것이 기본인데, 싱크로 몬스터들을 필드에 내는 것이 기본적으로 어렵지 않다.
                     </p>
                 </article>
-                <article class="main_article gameContent initialShow">
+                <article class="main_article midrange initialShow">
                     <h1>제너레이드</h1>
-                    <h4>장점</h4>
+                    <h4>파워 : &#10029;&#10029;&#10029;&#10027;&#10027; 난이도 : &#10029;&#10029;&#10027;&#10027;&#10027; 견제력 : &#10029;&#10029;&#10029;&#10027;&#10027;</h4>
                     <p>
                         제너레이드의 견제폭은 다른 강력한 카드군과 비교해도 특출난 편이다. 요즘 듀얼 환경에서 살아남으려면 꼭 필요한 프리체인류 효과와 몬/마/함 퍼미션(하르), 드로우 및 서치 견제(하르), 소환 무효(니드헥), 비파괴 제거(우트가르자, 레이바테인) 및 비지정 제거(레이바테인)를 전부 가지고 있다. 그리고 필드 마법인 스테이지 하나만으로 덱이 운영되는 간단한 기믹을 가졌다.
                         필드 마법인 스테이지 3장과 메인 덱 몬스터 9~11장[3], 테라포밍 1장만 넣으면 나머지를 범용 카드로 채울 수 있다. 메인 덱 몬스터들이 강하고 핵심적인 효과들을 가지고 있기 때문에 전개력이나 돌파력을 늘려 능동적인 타입이나, 강한 함정 카드들을 다수 투입한 함떡 타입, 각양각색의 카드군과 섞어 쓰는 등 플레이어의 입맛에 따라 구축이 가능하다. 
@@ -334,14 +367,14 @@
                 <!-- 운영 -->
                 <article class="main_article operate">
                     <h1>섬도희</h1>
-                    <h4>장점</h4>
+                    <h4>파워 : &#10029;&#10029;&#10029;&#10027;&#10027; 난이도 : &#10029;&#10029;&#10029;&#10029;&#10027; 견제력 : &#10029;&#10029;&#10027;&#10027;&#10027;</h4>
                     <p>
                     섬도희는 조건만 채우면 서치 가능한 욕망의 항아리가 되는 인게이지, 모든 섬도 마법 카드를 재활용해주는 멀티롤과 카가리 등 어드밴티지 확보에 크게 특화돼있다. 마법 중심의 덱이라 아드 소모가 많을 수밖에 없음에도 불구하고, 이 강력하면서도 지속적인 아드 확보 능력 덕에 패나 필드가 풍족한 경우가 대부분이고 섬도 마법 카드엔 공통적으로 기본적인 효과 외에도 묘지에 마법 카드가 3장 이상 있을 때 발동할 수 있는 추가 효과가 있다. 이 추가 효과는 추가 드로우를 포함해 탈취, 특수 소환, 파괴 내성 등 원래 효과 못지않게 강력한 경우가 많다. 
                     </p>
                 </article>
                 <article class="main_article operate">
                     <h1>섀도르</h1>
-                    <h4>장점</h4>
+                    <h4>파워 : &#10029;&#10029;&#10027;&#10027;&#10027; 난이도 : &#10029;&#10029;&#10029;&#10027;&#10027; 견제력 : &#10029;&#10029;&#10029;&#10027;&#10027;</h4>
                     <p>
                         엑스트라 덱이나, 메인 덱이나 여유가 많지 않은 편이다. 더군다나 소환수와 섀도르 모두 융합 소재의 속성을 따져서, 패 트랩 역시 가려서 들어가는 편이다. 국민 패 트랩인 하루 우라라의 경우 애매한 속성으로 인해 자주 채용되지 않고, 엘섀도르 네피림과 소환수 메르카바의 융합 소재가 되는 빛 속성 패 트랩인 이펙트 뵐러와 PSY프레임기어 감마, 패를 보강할 수 있는 증식의 G 정도만 사용된다. 극단적인 경우에는 PSY프레임기어 감마 외에는 안 넣는 경우도 있다.
                     </p>
@@ -655,9 +688,13 @@
         </div>
     </div>
     <footer id="main_footer">
+        
         <h3>HTML5 + CSS3 Basic</h3>
         <address>Website Layout Basic</address>
     </footer>
+    <script src="app.js"></script>
     <script src="po.js"></script>
+    <script src="containerde.js"></script>
+    <!-- <script src="scroll.js"></script> -->
 </body>
 </html>
