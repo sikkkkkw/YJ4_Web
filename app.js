@@ -8,7 +8,7 @@ let currentFrame = 0;
 function loadImage() {
     for (let i = 0; i < totalImageCount; i++) {
         let img = new Image();
-        img.src = `./vdieo/frame_${i}.jpg`;
+        img.src = `./frame/frame_${i}.jpg`;
         videoImages.push(img);
 
         img.addEventListener("load", function () {
