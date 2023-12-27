@@ -11,6 +11,10 @@
       rel="stylesheet"
     />
     <script
+      src="https://kit.fontawesome.com/7fe8e71161.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2537bb27a5faedb91cc75896d7a88920"
     ></script>
@@ -41,7 +45,7 @@
         position: relative;
         width: 1900px;
         margin: 0 auto;
-        background-color: #c0c0c0;
+        background-color: #001b35;
       }
       /* 띄우기 */
       .main_article {
@@ -72,7 +76,7 @@
         height: 160px;
         position: relative;
         z-index: 2;
-        background-color: #c0c0c0;
+        background-color: #001427;
         border-radius: 15px 15px 0px 0px;
       }
 
@@ -128,13 +132,13 @@
       #main_lnb > ul > li > a {
         display: block;
         padding: 12px 10px;
-        border: 1px solid black;
-        color: #333;
+        border: 1px solid #fff;
+        color: #fff;
         font-size: 20px;
       }
       #main_lnb > ul > li > a:hover {
-        background: black;
-        color: white;
+        background: white;
+        color: black;
       }
       #main_lnb > ul > li:first-child > a {
         border-radius: 10px 0 0 10px;
@@ -156,13 +160,16 @@
       #content > #main_aside {
         width: 340px;
         float: right;
+        border-top: 1px solid #fff;
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
       }
       /* 본문 */
       #main_section > article.main_article {
         margin-bottom: 10px;
         padding: 20px;
-        border: 1px solid #333;
-        background-color: #dcdcdc;
+        border: 1px solid #fff;
+        background-color: #0a243d;
       }
       #main_section p {
         font-family: "LINESeedKR-Bd";
@@ -231,9 +238,15 @@
       .item {
         overflow: hidden;
         padding: 10px;
-        border: 1px solid black;
+        border: 1px solid #fff;
         border-top: none;
-        background-color: #dcdcdc;
+        background-color: #001b35;
+      }
+      .description > strong {
+        color: #f6f0aa;
+      }
+      .item .description p {
+        color: #fff;
       }
       .item:last-child {
         box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
@@ -281,12 +294,18 @@
         padding: 20px;
         /* 글자 정렬 */
         text-align: center;
-        background-color: #c0c0c0;
+        background-color: #001b35;
         border-radius: 0px 0px 15px 15px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
       }
       #title {
         font-family: "Noto Sans KR", sans-serif;
+      }
+      #title > h1 {
+        color: #fff;
+      }
+      #title > h2 {
+        color: #fff;
       }
       li {
         list-style: none;
@@ -299,8 +318,6 @@
       }
       img {
         border: 0; /* 이미지 태그 초기화 */
-      }
-      footer {
       }
       h4 {
         position: relative;
@@ -347,6 +364,37 @@
 
       .back1 {
         opacity: 0.4;
+      }
+      /* 탑버튼 */
+      #scrollToTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        background-color: #dcdcdc; /* Choose your desired background color */
+        color: #fff; /* Choose your desired text color */
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+        z-index: 1000;
+        opacity: 0.7;
+        width: 40px;
+        font-size: 15px;
+        /* transition: opacity 0.3s ease; */
+      }
+      #scrollToTopBtn:hover {
+        opacity: 1; /* 호버 시 투명도 값 조절 */
+      }
+      .article-text > h1 {
+        color: #0263b7;
+      }
+      .article-text > h4 {
+        color: #f6f0aa;
+      }
+      .article-text > p {
+        color: #fff;
       }
     </style>
   </head>
@@ -1907,14 +1955,36 @@
         </aside>
       </div>
     </div>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">
+      <i class="fa-solid fa-circle-up"></i>
+    </button>
     <footer id="main_footer">
-      <h3>HTML5 + CSS3 Basic</h3>
-      <address>Website Layout Basic</address>
+      <div class="social-links">
+        <a
+          href="https://www.facebook.com/yugioh.kr/?locale=ko_KR"
+          target="_blank"
+          style="font-size: 30px; color: #fff"
+          ><i class="fa-brands fa-square-facebook"></i
+        ></a>
+        <a
+          href="https://twitter.com/yourhandle"
+          target="_blank"
+          style="font-size: 30px; color: #fff"
+          ><i class="fa-brands fa-square-x-twitter"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/youraccount"
+          target="_blank"
+          style="font-size: 30px; color: #fff"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+      </div>
     </footer>
     <script src="app.js"></script>
     <script src="po.js"></script>
     <script src="containerde.js"></script>
     <script src="api.js"></script>
+    <script src="top.js"></script>
     <!-- <script src="scroll.js"></script> -->
   </body>
 </html>
